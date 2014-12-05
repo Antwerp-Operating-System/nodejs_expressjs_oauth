@@ -57,7 +57,8 @@ app.get('/callback', function(req, res) {
         } else {
 
           res.json({
-            data: data
+            data: data,
+            token : token
           });
         }
       });

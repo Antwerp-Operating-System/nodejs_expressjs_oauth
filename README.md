@@ -27,4 +27,26 @@ http://localhost:3000/
 ```
 to start the authentication flow.
 
+## Using the OAuth token
+After authenticating the app will consume the /me service, sending the OAuth token in the HTTP header.
+The output of the /me service looks like this.
 
+
+```
+{
+	"data": {
+	"success": true,
+	"data": {
+		"id": "53e0bfd3aba8a72a308b45b0",
+		"first_name": "stefaan",
+		"last_name": "ponnet"
+		}
+	}
+}
+```
+
+## CURL example
+
+```
+curl -v -H "Authorization: token OAUTH-TOKEN" 'https://services.antwerpen.be//api/user/0.0.1/me' 
+```
