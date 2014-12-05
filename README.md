@@ -14,7 +14,18 @@ In your request please specify:
 
 ## Usage
 
-Once you have your OAuth tokens , fill them in in the placeholders in the code ( index.js ) and type :
+Once you have your OAuth tokens , fill them in in the placeholders in the code ( index.js ) 
+
+
+```
+var clientID = '';
+var clientSecret = '';
+
+...
+```
+
+
+and type :
 
 ```
 npm install
@@ -39,7 +50,8 @@ The output of the /me service looks like this.
 	"data": {
 		"id": "53e0bfd3aba8a72a308b45b0",
 		"first_name": "stefaan",
-		"last_name": "ponnet"
+		"last_name": "ponnet",
+		"AvatarUrl: "https://assets.antwerpen.be/srv/assets/api/image/1a37eb83-a6d9-438b-98fb-ccfa29f3bba9/92212c90-844e-11e3-a56e-bf631cddae46-892.png"
 		}
 	}
 }
