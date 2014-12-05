@@ -3,6 +3,7 @@
 var express = require('express');
 var util = require('util');
 var app = express();
+app.use(express.static(__dirname + '/public'));
 
 var clientID = '';
 var clientSecret = '';
@@ -40,19 +41,21 @@ app.get('/callback', function(req, res) {
   oauth2.authCode.getToken({
     redirect_uri: 'http://localhost:3000/callback',
     code: code,
-  }, function(error, token) {
-    if (error) {
-      console.log('Access Token Error', error.message);
+  }, function(err, token) {
+    if (err) {
+      res.json({
+        error: err,
+      });
     } else {
-      var token2 = oauth2.accessToken.create(token);
 
-      oauth2.api('GET', '/api/user/0.0.1/me', token.token, function(err, data) {
+      oauth2.api('GET', '/api/user/0.0.1/me', token, function(err, data) {
         if (err) {
           res.json({
             error: err,
             token: token
           });
         } else {
+
           res.json({
             data: data
           });
@@ -64,7 +67,7 @@ app.get('/callback', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  res.send('<a href="/auth">login</a>');
+  res.send('<a href="/auth"><img src="oauth-btn.png" style="height:80px;"/></a>');
 });
 
 app.get('/member', function(req, res) {
